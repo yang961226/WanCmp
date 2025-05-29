@@ -1,4 +1,4 @@
-package com.sundayting.wancmp.screen.home.tab
+package com.sundayting.wancmp.screen.home.tab.mine_tab
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,15 +13,15 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import wancmp.composeapp.generated.resources.Res
-import wancmp.composeapp.generated.resources.ic_home
-import wancmp.composeapp.generated.resources.tab_home_title
+import wancmp.composeapp.generated.resources.ic_mine
+import wancmp.composeapp.generated.resources.tab_mine_title
 
-object HomeTab : Tab {
+object MineTab : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val icon = painterResource(Res.drawable.ic_home)
-            val title = stringResource(Res.string.tab_home_title)
+            val icon = painterResource(Res.drawable.ic_mine)
+            val title = stringResource(Res.string.tab_mine_title)
             return remember {
                 derivedStateOf {
                     TabOptions(
@@ -33,14 +33,14 @@ object HomeTab : Tab {
             }.value
         }
 
-
     @Composable
     override fun Content() {
+        
         Box(
-            Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            Modifier.Companion.fillMaxSize(),
+            contentAlignment = Alignment.Companion.Center
         ) {
-            Text("我是HomeTab")
+            Text("我是MineTab")
         }
     }
 }

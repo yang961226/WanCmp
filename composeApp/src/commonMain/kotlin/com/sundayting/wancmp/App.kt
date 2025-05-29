@@ -6,19 +6,16 @@ import cafe.adriel.voyager.core.annotation.ExperimentalVoyagerApi
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.sundayting.wancmp.screen.home.HomeScreen
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalVoyagerApi::class)
 @Composable
-@Preview
 fun App() {
     MaterialTheme {
-        Navigator(HomeScreen()){
+        Navigator(HomeScreen()) {
             SlideTransition(
                 it,
                 disposeScreenAfterTransitionEnd = true
             )
         }
     }
-
 }

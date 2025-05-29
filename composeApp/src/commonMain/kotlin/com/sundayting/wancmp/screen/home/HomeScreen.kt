@@ -15,8 +15,8 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.TabNavigator
-import com.sundayting.wancmp.screen.home.tab.HomeTab
-import com.sundayting.wancmp.screen.home.tab.MineTab
+import com.sundayting.wancmp.screen.home.tab.home_tab.HomeTab
+import com.sundayting.wancmp.screen.home.tab.mine_tab.MineTab
 
 class HomeScreen : Screen {
 
