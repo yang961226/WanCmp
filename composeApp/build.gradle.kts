@@ -39,14 +39,30 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain.dependencies {
+            compose.materialIconsExtended
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
+            implementation (compose.materialIconsExtended)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
+            val voyagerVersion = "1.1.0-beta03"
+            // Navigator
+            implementation("cafe.adriel.voyager:voyager-navigator:${voyagerVersion}")
+            // Screen Model
+            implementation("cafe.adriel.voyager:voyager-screenmodel:${voyagerVersion}")
+            // BottomSheetNavigator
+            implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:${voyagerVersion}")
+            // TabNavigator
+            implementation("cafe.adriel.voyager:voyager-tab-navigator:${voyagerVersion}")
+            // Transitions
+            implementation("cafe.adriel.voyager:voyager-transitions:${voyagerVersion}")
+            // Koin integration
+            implementation("cafe.adriel.voyager:voyager-koin:${voyagerVersion}")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
