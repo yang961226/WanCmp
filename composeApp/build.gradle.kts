@@ -64,8 +64,8 @@ kotlin {
             // Koin integration
             implementation("cafe.adriel.voyager:voyager-koin:${voyagerVersion}")
 
-//            implementation("com.ctrip.flight.mmkv:mmkv-kotlin:1.2.17")
-
+            // DataStore
+            implementation("androidx.datastore:datastore-preferences:1.1.7")
 
         }
         commonTest.dependencies {

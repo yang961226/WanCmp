@@ -47,7 +47,7 @@ object HomeTab : Tab {
             Column {
                 Text("当前点击数：${screenModel.clickTime}")
                 Button(onClick = {
-                    screenModel.clickTime++
+                    screenModel.updateClickTime()
                 }) {
                     Text("点我加1")
                 }
