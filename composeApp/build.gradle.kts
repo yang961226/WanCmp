@@ -109,6 +109,10 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+compose.resources {
+    generateResClass = auto
+}
+
 compose.desktop {
     application {
         mainClass = "com.sundayting.wancmp.MainKt"
