@@ -11,8 +11,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.sundayting.wancmp.screen.jigsaw.JigsawScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import wancmp.composeapp.generated.resources.Res
@@ -40,6 +43,7 @@ object HomeTab : Tab {
     @Composable
     override fun Content() {
         val screenModel = rememberScreenModel { HomeTabViewModel() }
+        val navigator = LocalNavigator.currentOrThrow.parent!!
         Box(
             Modifier.Companion.fillMaxSize(),
             contentAlignment = Alignment.Companion.Center
@@ -50,6 +54,11 @@ object HomeTab : Tab {
                     screenModel.updateClickTime()
                 }) {
                     Text("点我加1")
+                }
+                Button(onClick = {
+                    navigator.push(JigsawScreen())
+                }) {
+                    Text("点我跳转拼图")
                 }
             }
 
