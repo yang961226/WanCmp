@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.ktrofitPlugin)
 }
 
 kotlin {
@@ -33,14 +34,12 @@ kotlin {
 
     sourceSets {
 
-        val koinVersion = "4.0.3"
-
         val desktopMain by getting
 
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation("io.insert-koin:koin-android:${koinVersion}")
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             compose.materialIconsExtended
@@ -54,25 +53,26 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            val voyagerVersion = "1.1.0-beta03"
             // Navigator
-            implementation("cafe.adriel.voyager:voyager-navigator:${voyagerVersion}")
+            implementation(libs.voyager.navigator)
             // Screen Model
-            implementation("cafe.adriel.voyager:voyager-screenmodel:${voyagerVersion}")
+            implementation(libs.voyager.screenmodel)
             // BottomSheetNavigator
-            implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:${voyagerVersion}")
+            implementation(libs.voyager.bottom.sheet.navigator)
             // TabNavigator
-            implementation("cafe.adriel.voyager:voyager-tab-navigator:${voyagerVersion}")
+            implementation(libs.voyager.tab.navigator)
             // Transitions
-            implementation("cafe.adriel.voyager:voyager-transitions:${voyagerVersion}")
+            implementation(libs.voyager.transitions)
             // Koin integration
-            implementation("cafe.adriel.voyager:voyager-koin:${voyagerVersion}")
+            implementation(libs.voyager.koin)
 
             // DataStore
-            implementation("androidx.datastore:datastore-preferences:1.1.7")
+            implementation(libs.androidx.datastore.preferences)
 
 
-            implementation("io.insert-koin:koin-core:${koinVersion}")
+            implementation(libs.koin.core)
+
+            implementation(libs.ktorfit.lib)
 
         }
         commonTest.dependencies {

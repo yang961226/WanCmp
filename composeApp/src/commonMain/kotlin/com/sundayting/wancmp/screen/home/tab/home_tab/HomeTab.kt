@@ -10,7 +10,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.core.model.rememberScreenModel
+import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import org.jetbrains.compose.resources.painterResource
@@ -39,7 +39,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        val screenModel = rememberScreenModel { HomeTabViewModel() }
+        val screenModel = koinScreenModel<HomeTabViewModel>()
         Box(
             Modifier.Companion.fillMaxSize(),
             contentAlignment = Alignment.Companion.Center

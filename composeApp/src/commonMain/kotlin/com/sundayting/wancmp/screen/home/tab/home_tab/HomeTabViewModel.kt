@@ -7,10 +7,14 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.sundayting.wancmp.utils.SPUtil
+import de.jensklingenberg.ktorfit.Ktorfit
 import kotlinx.coroutines.launch
+import org.koin.dsl.module
 
 
-class HomeTabViewModel : ScreenModel {
+class HomeTabViewModel(
+    ktorfit: Ktorfit
+) : ScreenModel {
 
     private var _clickTime by mutableIntStateOf(0)
     val clickTime
@@ -19,6 +23,7 @@ class HomeTabViewModel : ScreenModel {
     private val clickTimeKey = intPreferencesKey("click_time")
 
     init {
+        println("获取到实例：$ktorfit")
         screenModelScope.launch {
             _clickTime = SPUtil.userSpecific.getInt(clickTimeKey)
         }
@@ -30,4 +35,8 @@ class HomeTabViewModel : ScreenModel {
         }
     }
 
+}
+
+val homeTabModule = module {
+    factory { HomeTabViewModel(get()) }
 }
