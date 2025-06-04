@@ -31,7 +31,7 @@ actual object SPUtil : SharedPreferencesOperation by DataStoreOperationDelegate(
         key: String
     ) = PreferenceDataStoreFactory.createWithPath(
         produceFile = {
-            ("/spStore" + "_${key.trim()}_${DATA_STORE_FILE_NAME}").toPath()
+            ("../spStore/" + "${key.trim()}_${DATA_STORE_FILE_NAME}").toPath()
         }
     )
 

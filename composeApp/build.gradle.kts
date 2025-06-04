@@ -32,11 +32,15 @@ kotlin {
     jvm("desktop")
 
     sourceSets {
+
+        val koinVersion = "4.0.3"
+
         val desktopMain by getting
 
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("io.insert-koin:koin-android:${koinVersion}")
         }
         commonMain.dependencies {
             compose.materialIconsExtended
@@ -66,6 +70,9 @@ kotlin {
 
             // DataStore
             implementation("androidx.datastore:datastore-preferences:1.1.7")
+
+
+            implementation("io.insert-koin:koin-core:${koinVersion}")
 
         }
         commonTest.dependencies {

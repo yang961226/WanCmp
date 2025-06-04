@@ -1,16 +1,19 @@
 package com.sundayting.wancmp.utils
 
+import android.content.Context
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
-import com.sundayting.wancmp.WanApplication
 import com.sundayting.wancmp.utils.SPUtil.createInstance
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import okio.Path.Companion.toPath
+import org.koin.java.KoinJavaComponent.inject
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual object SPUtil :
     SharedPreferencesOperation by DataStoreOperationDelegate({ createInstance("default") }) {
+
+        private val context: Context by inject(Context::class.java)
 
     private var uid = "21"
 
@@ -35,7 +38,7 @@ actual object SPUtil :
         key: String
     ) = PreferenceDataStoreFactory.createWithPath(
         produceFile = {
-            WanApplication.instance.filesDir.resolve("${key.trim()}_${DATA_STORE_FILE_NAME}").absolutePath.toPath()
+            context.filesDir.resolve("${key.trim()}_${DATA_STORE_FILE_NAME}").absolutePath.toPath()
         }
     )
 

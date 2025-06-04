@@ -1,17 +1,16 @@
 package com.sundayting.wancmp
 
 import android.app.Application
+import com.sundayting.wancmp.utils.initKoin
+import org.koin.android.ext.koin.androidContext
 
 class WanApplication : Application() {
 
-    companion object {
-        lateinit var instance: WanApplication
-            private set
-    }
-
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        initKoin {
+            androidContext(this@WanApplication)
+        }
     }
 
 }
