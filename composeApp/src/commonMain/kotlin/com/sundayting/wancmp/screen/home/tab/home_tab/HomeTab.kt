@@ -15,7 +15,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.sundayting.wancmp.screen.jigsaw.JigsawScreen
+import com.sundayting.wancmp.screen.jigsaw.JigsawScreen2
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import wancmp.composeapp.generated.resources.Res
@@ -56,7 +56,7 @@ object HomeTab : Tab {
                     Text("点我加1")
                 }
                 Button(onClick = {
-                    navigator.push(JigsawScreen())
+                    navigator.push(JigsawScreen2())
                 }) {
                     Text("点我跳转拼图")
                 }

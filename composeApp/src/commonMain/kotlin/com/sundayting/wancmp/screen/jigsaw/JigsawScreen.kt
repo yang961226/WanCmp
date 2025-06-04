@@ -50,20 +50,7 @@ class JigsawScreen : Screen {
 
         val screenModel = rememberScreenModel { JigsawScreenModel() }
 
-        val state = remember {
-            JigSawScreenState(
-                gameSize = IntSize(3, 3)
-            ).apply {
-                jigsawList.add(JigsawBean(index = 2, offset = IntOffset(0, 0)))
-                jigsawList.add(JigsawBean(index = 4, offset = IntOffset(1, 0)))
-                jigsawList.add(JigsawBean(index = 6, offset = IntOffset(2, 0)))
-                jigsawList.add(JigsawBean(index = 5, offset = IntOffset(0, 1)))
-                jigsawList.add(JigsawBean(index = 3, offset = IntOffset(1, 1)))
-                jigsawList.add(JigsawBean(index = 8, offset = IntOffset(2, 1)))
-                jigsawList.add(JigsawBean(index = 1, offset = IntOffset(0, 2)))
-                jigsawList.add(JigsawBean(index = 7, offset = IntOffset(1, 2)))
-            }
-        }
+        val state = screenModel.state
 
         Box {
             val imageBitmap = imageResource(Res.drawable.jigsaw_dog_example_1)
