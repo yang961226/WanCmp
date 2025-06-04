@@ -8,7 +8,13 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
-    alias(libs.plugins.ktrofitPlugin)
+
+
+    alias(libs.plugins.kotlinSerialization)
+    id("com.google.devtools.ksp")
+    alias(libs.plugins.ktorfitPlugin)
+//    alias(libs.plugins.ksp)
+
 }
 
 kotlin {
@@ -53,6 +59,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
+            implementation(libs.kotlinx.serialization.json)
+
             // Navigator
             implementation(libs.voyager.navigator)
             // Screen Model
@@ -69,11 +77,16 @@ kotlin {
             // DataStore
             implementation(libs.androidx.datastore.preferences)
 
-
+            //koin
             implementation(libs.koin.core)
 
+            //ktorfit
             implementation(libs.ktorfit.lib)
 
+            //ktor
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

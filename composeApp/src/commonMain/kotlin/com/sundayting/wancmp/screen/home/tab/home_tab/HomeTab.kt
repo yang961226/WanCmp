@@ -39,7 +39,7 @@ object HomeTab : Tab {
 
     @Composable
     override fun Content() {
-        val screenModel = koinScreenModel<HomeTabViewModel>()
+        val screenModel = koinScreenModel<HomeTabScreenModel>()
         Box(
             Modifier.Companion.fillMaxSize(),
             contentAlignment = Alignment.Companion.Center

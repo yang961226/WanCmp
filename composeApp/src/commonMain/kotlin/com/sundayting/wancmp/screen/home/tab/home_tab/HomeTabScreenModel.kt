@@ -6,14 +6,15 @@ import androidx.compose.runtime.setValue
 import androidx.datastore.preferences.core.intPreferencesKey
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
+import com.sundayting.wancmp.function.article.ArticleService
 import com.sundayting.wancmp.utils.SPUtil
-import de.jensklingenberg.ktorfit.Ktorfit
+import com.sundayting.wancmp.utils.net.bean.isSuccess
 import kotlinx.coroutines.launch
 import org.koin.dsl.module
 
 
-class HomeTabViewModel(
-    ktorfit: Ktorfit
+class HomeTabScreenModel(
+    articleService: ArticleService
 ) : ScreenModel {
 
     private var _clickTime by mutableIntStateOf(0)
@@ -23,7 +24,12 @@ class HomeTabViewModel(
     private val clickTimeKey = intPreferencesKey("click_time")
 
     init {
-        println("获取到实例：$ktorfit")
+        screenModelScope.launch {
+            val result = articleService.fetchBanner()
+            if(result.isSuccess()){
+                println("网络请求结果：${result.body}")
+            }
+        }
         screenModelScope.launch {
             _clickTime = SPUtil.userSpecific.getInt(clickTimeKey)
         }
@@ -38,5 +44,5 @@ class HomeTabViewModel(
 }
 
 val homeTabModule = module {
-    factory { HomeTabViewModel(get()) }
+    factory { HomeTabScreenModel(get()) }
 }

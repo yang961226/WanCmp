@@ -2,6 +2,7 @@ package com.sundayting.wancmp.utils
 
 import com.sundayting.wancmp.screen.home.tab.home_tab.homeTabModule
 import com.sundayting.wancmp.utils.net.ktorfitModule
+import com.sundayting.wancmp.utils.net.networkModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
@@ -11,7 +12,8 @@ fun initKoin(config: KoinAppDeclaration? = null) {
         includes(config)
         modules(
             homeTabModule,
-            ktorfitModule
+            ktorfitModule,
+            networkModule
         )
     }
 }
