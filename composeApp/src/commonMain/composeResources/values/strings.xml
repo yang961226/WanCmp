@@ -1,4 +1,5 @@
 <resources>
     <string name="tab_home_title">首页</string>
     <string name="tab_mine_title">我的</string>
+    <string name="can_not_load_more">已经到底了~</string>
 </resources>

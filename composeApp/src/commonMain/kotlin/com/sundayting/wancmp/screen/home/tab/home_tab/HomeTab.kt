@@ -2,9 +2,11 @@ package com.sundayting.wancmp.screen.home.tab.home_tab
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FavoriteBorder
@@ -19,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -27,6 +30,9 @@ import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.sundayting.wancmp.widgets.LoadStateHostContainer
+import com.sundayting.wancmp.widgets.LoadingMoreWidget
+import com.sundayting.wancmp.widgets.toLoadingMoreState
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import wancmp.composeapp.generated.resources.Res
@@ -65,10 +71,16 @@ object HomeTab : Tab {
                 state = state,
                 needShowRefreshing = false,
             ) {
+                val listState = rememberLazyListState()
                 LazyColumn(
-                    Modifier.fillMaxSize()
+                    Modifier.fillMaxSize(),
+                    state = listState
                 ) {
-                    itemsIndexed(state.articleList) { index, article ->
+                    itemsIndexed(
+                        items = state.articleList,
+                        contentType = { _, _ -> 1 },
+                        key = { _, article -> article.id }
+                    ) { index, article ->
                         ListItem(
                             overlineContent = { Text("${article.author}・${article.date}") },
                             headlineContent = {
@@ -99,6 +111,20 @@ object HomeTab : Tab {
                             }
                         )
                         HorizontalDivider()
+                    }
+                    if (state.articleList.isNotEmpty()) {
+                        item {
+                            LaunchedEffect(state.articleList.size) {
+                                screenModel.loadMore()
+                                launch {
+                                    listState.scrollToItem(listState.layoutInfo.totalItemsCount - 1)
+                                }
+                            }
+                            LoadingMoreWidget(
+                                Modifier.fillMaxWidth(),
+                                state = state.toLoadingMoreState()
+                            )
+                        }
                     }
                 }
             }

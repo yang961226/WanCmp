@@ -1,5 +1,6 @@
 package com.sundayting.wancmp.screen.home.tab.home_tab
 
+import androidx.compose.ui.util.fastDistinctBy
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.sundayting.wancmp.function.article.ArticleChapterBean
@@ -31,21 +32,23 @@ class HomeTabScreenModel(
         if (state.checkBeforeLoad(isRefresh) { loadJob?.cancel() }) {
             loadJob = screenModelScope.launch {
                 val fetchBannerJob = launch {
-                    val result = articleService.fetchBanner()
-                    if (result.isSuccess()) {
-                        state.bannerList.addAll(result.body.data.orEmpty())
+                    if (isRefresh) {
+                        val result = articleService.fetchBanner()
+                        if (result.isSuccess()) {
+                            state.bannerList.addAll(result.body.data.orEmpty())
+                        }
                     }
                 }
 
                 val fetchArticleListJob = launch {
                     val result =
-                        articleService.fetchArticleList(if (isRefresh) 0 else state.articlePageIndex + 1)
+                        articleService.fetchArticleList(if (isRefresh) 0 else state.articlePageIndex)
                     if (result.isSuccess()) {
                         val data = result.body.requireData()
                         if (isRefresh) {
                             state.articleList.clear()
                         }
-                        state.articleList.addAll(data.list.map {
+                        val newList = state.articleList + data.list.map {
                             ArticleUiBean(
                                 id = it.id.toString(),
                                 title = it.title,
@@ -61,7 +64,8 @@ class HomeTabScreenModel(
                                     name = it.superChapterName
                                 )
                             )
-                        })
+                        }.fastDistinctBy { it.id }
+                        state.articleList.addAll(newList)
                         state.articlePageIndex = data.curPage
                         state.changeCanLoadMore(data.pageCount != data.curPage)
                         state.changeEmpty(state.articleList.isEmpty())
