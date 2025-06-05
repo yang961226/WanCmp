@@ -10,7 +10,7 @@ import com.sundayting.wancmp.screen.home.HomeScreen
 @OptIn(ExperimentalVoyagerApi::class)
 @Composable
 fun App() {
-    MaterialTheme {
+    MaterialTheme{
         Navigator(HomeScreen()) {
             SlideTransition(
                 it,

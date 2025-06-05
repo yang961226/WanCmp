@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     id("com.google.devtools.ksp")
     alias(libs.plugins.ktorfitPlugin)
+    id("org.jetbrains.kotlinx.atomicfu") version "0.27.0"
 //    alias(libs.plugins.ksp)
 
 }
@@ -41,14 +42,22 @@ kotlin {
     sourceSets {
 
         val desktopMain by getting
+        val coilVersion = "3.2.0"
+        val ktorVersion = "3.1.3"
 
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
+            implementation("io.ktor:ktor-client-android:${ktorVersion}")
+        }
+        appleMain.dependencies {
+            implementation("io.ktor:ktor-client-darwin:${ktorVersion}")
+        }
+        jvmMain.dependencies {
+            implementation("io.ktor:ktor-client-java:${ktorVersion}")
         }
         commonMain.dependencies {
-            compose.materialIconsExtended
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -87,6 +96,12 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+
+//            implementation(libs.collapsing.top.bar.compose)
+
+
+            implementation("io.coil-kt.coil3:coil-compose:${coilVersion}")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:${coilVersion}")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
