@@ -54,7 +54,9 @@ kotlin {
         appleMain.dependencies {
             implementation("io.ktor:ktor-client-darwin:${ktorVersion}")
         }
-        jvmMain.dependencies {
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutinesSwing)
             implementation("io.ktor:ktor-client-java:${ktorVersion}")
         }
         commonMain.dependencies {
@@ -105,10 +107,6 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutinesSwing)
         }
     }
 }
