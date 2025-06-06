@@ -4,4 +4,13 @@
     <string name="can_not_load_more">已经到底了~</string>
     <string name="login_title">登录</string>
     <string name="register_title">注册</string>
+    <string name="input_account_text_field_hint">请输入账号</string>
+    <string name="password_text_field_hint">请输入密码</string>"
+    <string name="password_text_again_field_hint">请再次输入密码</string>"
+    <string name="login_button_text">登 录</string>
+    <string name="register_button_text">注 册</string>"
+    <string name="account_title">账号</string>
+    <string name="password_title">密码</string>
+    <string name="password_again_title">确认密码</string>
+    <string name="remember_me">记住我</string>
 </resources>
