@@ -51,6 +51,7 @@ class HomeScreen : Screen {
                             title = {
                                 Text(it.current.options.title)
                             },
+                            expandedHeight = 46.dp,
                             actions = {
                                 if (it.current == HomeTab) {
                                     IconButton(onClick = {}) {

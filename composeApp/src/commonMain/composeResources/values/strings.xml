@@ -13,4 +13,6 @@
     <string name="password_title">密码</string>
     <string name="password_again_title">确认密码</string>
     <string name="remember_me">记住我</string>
+    <string name="action_need_browser">此操作需要跳转至浏览器处理</string>
+    <string name="action_jump">跳转</string>
 </resources>

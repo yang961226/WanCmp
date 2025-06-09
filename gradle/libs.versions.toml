@@ -23,6 +23,7 @@ ktorfit = "2.5.2"
 voyagerVersion = "1.1.0-beta03"
 kspVersion = "2.1.21-2.0.1"
 collapsingTopBarCompose = "1.2.6"
+webViewKmp = "2.0.0"
 
 [libraries]
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
@@ -52,6 +53,7 @@ voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", vers
 voyager-tab-navigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyagerVersion" }
 voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyagerVersion" }
 collapsing-top-bar-compose = { module = "com.github.germainkevinbusiness:CollapsingTopBarCompose", version.ref = "collapsingTopBarCompose" }
+webview-kmp = { module = "io.github.kevinnzou:compose-webview-multiplatform", version.ref = "webViewKmp" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

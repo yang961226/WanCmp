@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 class ArticleUiBean(
+    val url: String,
     val id: String,
     val title: String,
     val date: String,

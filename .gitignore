@@ -19,3 +19,5 @@ captures
 Pods/
 *.preferences_pb
 **/spStore/
+/composeApp/kcef-bundle/
+/composeApp/cache/

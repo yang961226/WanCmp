@@ -25,7 +25,8 @@ dependencyResolutionManagement {
             }
         }
         mavenCentral()
-        maven(url = "https://jitpack.io")
+        maven("https://jitpack.io")
+        maven("https://jogamp.org/deployment/maven")
     }
 }
 

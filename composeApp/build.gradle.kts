@@ -104,6 +104,7 @@ kotlin {
 
             implementation("io.coil-kt.coil3:coil-compose:${coilVersion}")
             implementation("io.coil-kt.coil3:coil-network-ktor3:${coilVersion}")
+            api(libs.webview.kmp)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -151,5 +152,17 @@ compose.desktop {
             packageName = "com.sundayting.wancmp"
             packageVersion = "1.0.0"
         }
+        buildTypes.release.proguard {
+            configurationFiles.from("compose-desktop.pro")
+        }
+
+        jvmArgs("--add-opens", "java.desktop/sun.awt=ALL-UNNAMED")
+        jvmArgs("--add-opens", "java.desktop/java.awt.peer=ALL-UNNAMED") // recommended but not necessary
+
+        if (System.getProperty("os.name").contains("Mac")) {
+            jvmArgs("--add-opens", "java.desktop/sun.lwawt=ALL-UNNAMED")
+            jvmArgs("--add-opens", "java.desktop/sun.lwawt.macosx=ALL-UNNAMED")
+        }
+
     }
 }

@@ -46,9 +46,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.koin.koinScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import coil3.compose.AsyncImage
+import com.sundayting.wancmp.screen.web.ArticleWebScreen
 import com.sundayting.wancmp.widgets.LoadStateHostContainer
 import com.sundayting.wancmp.widgets.LoadingMoreWidget
 import com.sundayting.wancmp.widgets.toLoadingMoreState
@@ -89,6 +92,7 @@ object HomeTab : Tab {
                 listState.firstVisibleItemIndex > 5
             }
         }
+        val navigator = LocalNavigator.currentOrThrow.parent!!
         BoxWithConstraints(Modifier.fillMaxSize()) {
             val preferredItemWidth = maxWidth / 2
             PullToRefreshBox(
@@ -106,8 +110,9 @@ object HomeTab : Tab {
                     ) {
                         if (state.bannerList.isNotEmpty()) {
                             item(key = "banner", contentType = "banner") {
-                                Column{
-                                    val carouselState = rememberCarouselState { state.bannerList.size }
+                                Column {
+                                    val carouselState =
+                                        rememberCarouselState { state.bannerList.size }
                                     HorizontalMultiBrowseCarousel(
                                         state = carouselState,
                                         modifier = Modifier
@@ -172,7 +177,7 @@ object HomeTab : Tab {
                                     interactionSource = null,
                                     indication = ripple()
                                 ) {
-
+                                    navigator.push(ArticleWebScreen(url = article.url))
                                 }
                             )
                             HorizontalDivider()

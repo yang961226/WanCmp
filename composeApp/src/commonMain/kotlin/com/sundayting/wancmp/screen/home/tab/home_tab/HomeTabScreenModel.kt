@@ -50,6 +50,7 @@ class HomeTabScreenModel(
                         }
                         val newList = state.articleList + data.list.map {
                             ArticleUiBean(
+                                url = it.link,
                                 id = it.id.toString(),
                                 title = it.title,
                                 date = it.niceDate,
